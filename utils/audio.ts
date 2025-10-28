@@ -36,3 +36,21 @@ export function encode(bytes: Uint8Array) {
   }
   return btoa(binary);
 }
+
+// Local interface as the official Blob type is not exported from @google/genai
+interface PcmBlob {
+  data: string;
+  mimeType: 'audio/pcm;rate=16000';
+}
+
+export function createBlob(data: Float32Array): PcmBlob {
+  const l = data.length;
+  const int16 = new Int16Array(l);
+  for (let i = 0; i < l; i++) {
+    int16[i] = data[i] * 32768;
+  }
+  return {
+    data: encode(new Uint8Array(int16.buffer)),
+    mimeType: 'audio/pcm;rate=16000',
+  };
+}

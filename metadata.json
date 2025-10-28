@@ -1,0 +1,7 @@
+{
+  "name": "ATS Resume Architect",
+  "description": "An AI-powered assistant that guides you section-by-section to build a high-scoring, ATS-friendly resume through an interactive and iterative chat experience.",
+  "requestFramePermissions": [
+    "microphone"
+  ]
+}
